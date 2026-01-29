@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->string('username')->unique();
             $table->string('password');
-            $table->rememberToken();
+            $table->enum('role', ['admin', 'piket', 'wali_kelas', 'perwakilan_siswa']);
+            // Foreign ID ke kelas (nullable karena Admin/Piket tidak punya kelas spesifik)
+            $table->foreignId('classroom_id')->nullable()->constrained(); 
             $table->timestamps();
         });
 
