@@ -3,8 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 
 class building extends Model
 {
-    //
+    protected $fillable = ['name', 'area'];
+
+    public function classrooms(): HasMany
+    {
+        return $this->hasMany(Classroom::class);
+    }
 }
