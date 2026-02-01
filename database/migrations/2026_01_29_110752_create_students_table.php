@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nis');
             $table->string('nisn');
+            $table->string('rfid_number')->unique()->nullable();
             $table->string('name');
             $table->foreignId('classroom_id')->constrained();
             $table->timestamps();
