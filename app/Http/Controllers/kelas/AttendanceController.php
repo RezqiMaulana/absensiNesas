@@ -24,7 +24,13 @@ class AttendanceController extends Controller
             ->orderBy('name', 'asc')
             ->get();
 
-        // return view('attendance.form', compact('students'));
+        // Ambil status absensi hari ini untuk setiap siswa
+        $today = now()->format('Y-m-d');
+        $attendances = Attendance::whereDate('date', $today)
+            ->whereIn('student_id', $students->pluck('id'))
+            ->pluck('status', 'student_id');
+
+        return view('kelas.dashboard.index', compact('students', 'attendances', 'user'));
     }
 
     public function store(Request $request)

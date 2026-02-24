@@ -27,10 +27,21 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-            $user = Auth::user();
-            if ($user->role === 'admin') return redirect()->intended('/admin/dashboard');
-            if ($user->role === 'piket') return redirect()->intended('/piket/rekap');
-            return redirect()->intended('/absen-kelas');
+        $user = Auth::user();
+
+        if ($user->role === 'admin') {
+            return redirect()->intended(route('admin.dashboard'));
+        }
+
+        if ($user->role === 'piket') {
+            return redirect()->intended(route('piket.dashboard'));
+        }
+
+        if (in_array($user->role, ['wali_kelas', 'perwakilan_siswa'])) {
+            return redirect()->intended(route('attendance.index'));
+        }
+
+        return redirect()->intended('/');
 
         // return redirect()->intended(route('dashboard', absolute: false));
     }

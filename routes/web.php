@@ -12,12 +12,14 @@ Route::get('/', function () {
         $role = Auth::user()->role;
 
         if ($role === 'admin') {
-            return redirect('/admin/dashboard');
+            return redirect()->route('admin.dashboard');
         } elseif ($role === 'piket') {
-            return redirect('/piket/dashboard');
-        } else {
-            return redirect('/absen-kelas');
+            return redirect()->route('piket.dashboard');
+        } elseif (in_array($role, ['wali_kelas', 'perwakilan_siswa'])) {
+            return redirect()->route('attendance.index');
         }
+
+        return redirect('/');
     }
 
     // Jika belum login, tampilkan halaman login (bukan welcome)
