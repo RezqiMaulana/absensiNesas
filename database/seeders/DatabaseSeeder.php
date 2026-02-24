@@ -19,7 +19,10 @@ class DatabaseSeeder extends Seeder
         $gedungB = Building::create(['name' => 'Gedung Selatan', 'area' => 'Kampus Belakang']);
 
         // 2. Buat Kelas
-        $kelas12 = Classroom::create(['name' => 'XII RPL 1', 'building_id' => $gedungA->id]);
+        $kelas1 = Classroom::create(['name' => 'XII RPL 1', 'building_id' => $gedungA->id]);
+        $kelas2 = Classroom::create(['name' => 'XII RPL 2', 'building_id' => $gedungA->id]);
+        $kelas3 = Classroom::create(['name' => 'XI TKJ 1', 'building_id' => $gedungB->id]);
+        $kelas4 = Classroom::create(['name' => 'XI TKJ 2', 'building_id' => $gedungB->id]);
 
         // 3. Buat Akun Admin
         User::create([
@@ -43,7 +46,7 @@ class DatabaseSeeder extends Seeder
              'username' => 'walas',
             'password' => Hash::make('password'),
             'role' => 'wali_kelas',
-            'classroom_id' => $kelas12->id,
+            'classroom_id' => $kelas1->id,
         ]);
 
         // 6. Buat Akun Perwakilan Siswa
@@ -52,7 +55,7 @@ class DatabaseSeeder extends Seeder
              'username' => 'siswa',
             'password' => Hash::make('password'),
             'role' => 'perwakilan_siswa',
-            'classroom_id' => $kelas12->id,
+            'classroom_id' => $kelas1->id,
         ]);
     }
 }
