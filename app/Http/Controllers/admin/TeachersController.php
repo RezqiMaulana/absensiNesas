@@ -4,17 +4,24 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+<<<<<<< HEAD
 use App\Models\Teacher;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Admin\teacher\StoreTeacherRequest;
 use App\Http\Requests\Admin\teacher\UpdateTeacherRequest;
 use App\Imports\TeachersImport;
 use Maatwebsite\Excel\Facades\Excel;
+=======
+use App\Models\teachers;
+use App\Models\Classroom;
+use Illuminate\Support\Facades\Hash;
+>>>>>>> def37a5 (push env)
 
 class TeachersController extends Controller
 {
     public function index(Request $request)
     {
+<<<<<<< HEAD
         $query = Teacher::query();
 
         // Pencarian berdasarkan Nama atau NIP
@@ -102,3 +109,48 @@ class TeachersController extends Controller
         }
     }
 }
+=======
+        $teachers = teachers::latest()->paginate(10);
+
+        // $query = teachers::query();
+
+        // if ($request->filled('search')) {
+        //     $query->where( 'name', 'like', '%' . $request->search . '&');
+
+        // // Filter berdasarkan Mapel
+        // if ($request->filled('subject')) {
+        //     $query->where('subject', $request->subject);
+        // }
+
+        // $teachers = $query->latest()->paginate(10)->withQueryString();
+
+        return view('admin.teachers.index', compact('teachers'));
+        
+    }
+
+    public function edit(teachers $teachers)
+    {
+        return view('admin.teachers.edit', compact('teachers'));
+    }
+
+    public function update(Request $request, teachers $teachers)
+    {
+        $data = $request->validated();
+
+        if ($request->filled('subject')) {
+            $data['subject'] = Hash::make($request->subject);
+        } else {
+            unset($data['password']);
+        }
+
+        $teachers->update($data);
+        return redirect()->route('admin.teachers.index')->with('success', 'Guru diperbarui.');
+    }
+
+    public function destroy(teachers $teachers)
+    {
+        $teachers->delete();
+        return redirect()->back()->with('success', 'Guru dihapus.');
+    }
+} 
+>>>>>>> def37a5 (push env)
