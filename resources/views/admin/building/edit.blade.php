@@ -15,7 +15,7 @@
             </div>
         </div>
 
-        <form action="{{ route('admin.buildings.update', $building) }}" method="POST" class="space-y-6">
+        <form action="{{ route('admin.building.update', $building) }}" method="POST" class="space-y-6">
             @csrf
             @method('PUT')
 
@@ -43,7 +43,7 @@
             </div>
 
             <div class="flex gap-4 pt-4">
-                <a href="{{ route('admin.buildings.index') }}"
+                <a href="{{ route('admin.building.index') }}"
                    class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 text-sm font-bold rounded-xl transition-all">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>

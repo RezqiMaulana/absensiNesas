@@ -1,25 +1,9 @@
-# TODO: Fix Teachers Page
+# TODO: Complete Piket Exit Permission Feature
 
-## 1. Update TeachersController ✅
-- Implement index method with pagination, search, and filters.
-- Implement create, store, edit, update, destroy methods.
-- Implement importcreated, exportTemplate, import methods.
-
-## 2. Create Request Classes ✅
-- Create StoreTeacherRequest in app/Http/Requests/Admin/teacher/.
-- Create UpdateTeacherRequest in app/Http/Requests/Admin/teacher/.
-
-## 3. Create TeachersImport Class ✅
-- Create TeachersImport in app/Imports/ for Excel import.
-
-## 4. Create Views ✅
-- Create create.blade.php in resources/views/admin/teachers/. ✅
-- Create edit.blade.php in resources/views/admin/teachers/. ✅
-- Create import.blade.php in resources/views/admin/teachers/. ✅
-- Fix index.blade.php to display teachers data correctly (name, nip, subject). ✅
-
-## 5. Update Routes ✅
-- Add import and export routes in routes/admin.php.
-
-## 6. Verify and Test ✅
-- Ensure all functionality works like users page.
+- [x] Step 1: Fix resources/views/piket/exit_permissions/create.blade.php (rename from create.balde.php)
+- [x] Step 2: Add resource routes to routes/piket.php for exit_permissions
+- [x] Step 3: Create app/Http/Requests/piket/exitpermission/StoreExitPermissionRequest.php
+- [x] Step 4: Create app/Http/Requests/piket/exitpermission/UpdateExitPermissionRequest.php
+- [x] Step 5: Implement full CRUD methods in app/Http/Controllers/piket/exitpermissionscontroller.php
+ - [x] Step 6: Check and add navigation menu link for piket exit permissions
+ - [x] Step 7: Test feature and mark complete

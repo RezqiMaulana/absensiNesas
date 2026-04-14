@@ -27,17 +27,26 @@
                         Dashboard
                     </a>
                     <a href="{{ route('admin.users.index') }}" class="{{ Request::is('admin/users*') ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700/50' }} flex items-center gap-3 p-3 rounded-xl font-semibold transition-all">Kelola User</a>
-                    <a href="#" class="flex items-center gap-3 p-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-xl transition-all">Data Gedung</a>
-                    <!-- <a href="{{ route('admin.teachers.index') }}" class="flex items-center gap-3 p-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-xl transition-all">Data Guru</a> -->
-                     <a href="{{ route('admin.teachers.index') }}" class="{{ Request::is('admin/teacher') ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700/50' }} flex items-center gap-3 p-3 rounded-xl font-semibold transition-all">
+                    <a href="{{ route('admin.building.index') }}" class="{{ Request::is('admin/building*') ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700/50' }} flex items-center gap-3 p-3 rounded-xl font-semibold transition-all">
+                        Data Gedung
+                    </a>
+                     <a href="{{ route('admin.teachers.index') }}" class="{{ Request::is('admin/teachers*') ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700/50' }} flex items-center gap-3 p-3 rounded-xl font-semibold transition-all">
                         Data Guru
                     </a>
-                    
+<a href="{{ route('admin.classes.index') }}" class="{{ Request::is('admin/classes*') ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700/50' }} flex items-center gap-3 p-3 rounded-xl font-semibold transition-all">
+                        Data Kelas
+                    </a>
+                    <a href="{{ route('piket.exit_permissions.index') }}" class="{{ Request::is('piket/exit_permissions*') ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700/50' }} flex items-center gap-3 p-3 rounded-xl font-semibold transition-all">
+                        Izin Keluar
+                    </a>
                 @elseif($role == 'piket')
                     <a href="{{ route('piket.dashboard') }}" class="{{ Request::is('piket.dashboard*') ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700/50' }} flex items-center gap-3 p-3 rounded-xl font-semibold transition-all">
                         Dashboard
                     </a>
                     <a href="{{ route('piket.rekap.index') }}" class="flex items-center gap-3 p-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-xl transition-all">Rekap Area</a>
+                    <a href="{{ route('piket.exit_permissions.index') }}" class="{{ Request::is('piket/exit_permissions*') ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700/50' }} flex items-center gap-3 p-3 rounded-xl font-semibold transition-all">
+                        Izin Keluar
+                    </a>
                 @elseif(in_array($role, ['wali_kelas', 'perwakilan_siswa']))
                     <a href="{{ route('attendance.index') }}" class="{{ Request::is('absen-kelas*') ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700/50' }} flex items-center gap-3 p-3 rounded-xl font-semibold transition-all">
                         Input Absensi

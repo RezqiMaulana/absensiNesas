@@ -4,14 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Building;
+use App\Models\building;
 use Illuminate\Support\Facades\Hash;
 
 class BuildingController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Building::with('classrooms');
+        $query = building::with('classrooms');
 
         // Pencarian berdasarkan Nama atau Area
         if ($request->filled('search')) {
@@ -23,12 +23,12 @@ class BuildingController extends Controller
 
         $buildings = $query->latest()->paginate(10)->withQueryString();
 
-        return view('admin.buildings.index', compact('buildings'));
+        return view('admin.building.index', compact('buildings'));
     }
 
     public function create()
     {
-        return view('admin.buildings.create');
+        return view('admin.building.create');
     }
 
     public function store(Request $request)
@@ -40,12 +40,12 @@ class BuildingController extends Controller
 
         Building::create($request->only(['name', 'area']));
 
-        return redirect()->route('admin.buildings.index')->with('success', 'Gedung berhasil ditambahkan.');
+        return redirect()->route('admin.building.index')->with('success', 'Gedung berhasil ditambahkan.');
     }
 
     public function edit(Building $building)
     {
-        return view('admin.buildings.edit', compact('building'));
+        return view('admin.building.edit', compact('building'));
     }
 
     public function update(Request $request, Building $building)
@@ -56,7 +56,7 @@ class BuildingController extends Controller
         ]);
 
         $building->update($request->only(['name', 'area']));
-        return redirect()->route('admin.buildings.index')->with('success', 'Gedung diperbarui.');
+        return redirect()->route('admin.building.index')->with('success', 'Gedung diperbarui.');
     }
 
     public function destroy(Building $building)

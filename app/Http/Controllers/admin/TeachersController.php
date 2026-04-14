@@ -4,25 +4,22 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-<<<<<<< HEAD
-use App\Models\Teacher;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Admin\teacher\StoreTeacherRequest;
 use App\Http\Requests\Admin\teacher\UpdateTeacherRequest;
 use App\Imports\TeachersImport;
 use Maatwebsite\Excel\Facades\Excel;
-=======
 use App\Models\teachers;
 use App\Models\Classroom;
-use Illuminate\Support\Facades\Hash;
->>>>>>> def37a5 (push env)
+
+
 
 class TeachersController extends Controller
 {
     public function index(Request $request)
     {
-<<<<<<< HEAD
-        $query = Teacher::query();
+
+        $query = teachers::query();
 
         // Pencarian berdasarkan Nama atau NIP
         if ($request->filled('search')) {
@@ -38,7 +35,7 @@ class TeachersController extends Controller
         }
 
         $teachers = $query->latest()->paginate(10)->withQueryString();
-        $subjects = Teacher::distinct()->pluck('subject')->filter()->values(); // Untuk dropdown filter
+        $subjects = teachers::distinct()->pluck('subject')->filter()->values(); // Untuk dropdown filter
 
         return view('admin.teachers.index', compact('teachers', 'subjects'));
     }
@@ -51,17 +48,17 @@ class TeachersController extends Controller
     public function store(StoreTeacherRequest $request)
     {
         $data = $request->validated();
-        Teacher::create($data);
+        teachers::create($data);
 
         return redirect()->route('admin.teachers.index')->with('success', 'Teacher berhasil ditambahkan.');
     }
 
-    public function edit(Teacher $teacher)
+    public function edit(teachers $teacher)
     {
         return view('admin.teachers.edit', compact('teacher'));
     }
 
-    public function update(UpdateTeacherRequest $request, Teacher $teacher)
+    public function update(UpdateTeacherRequest $request, teachers $teacher)
     {
         $data = $request->validated();
         $teacher->update($data);
@@ -69,7 +66,7 @@ class TeachersController extends Controller
         return redirect()->route('admin.teachers.index')->with('success', 'Teacher diperbarui.');
     }
 
-    public function destroy(Teacher $teacher)
+    public function destroy(teachers $teacher)
     {
         $teacher->delete();
         return redirect()->back()->with('success', 'Teacher dihapus.');
@@ -107,9 +104,7 @@ class TeachersController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['file' => 'Terjadi kesalahan saat impor: ' . $e->getMessage()]);
         }
-    }
-}
-=======
+    
         $teachers = teachers::latest()->paginate(10);
 
         // $query = teachers::query();
@@ -125,32 +120,11 @@ class TeachersController extends Controller
         // $teachers = $query->latest()->paginate(10)->withQueryString();
 
         return view('admin.teachers.index', compact('teachers'));
-        
     }
 
-    public function edit(teachers $teachers)
-    {
-        return view('admin.teachers.edit', compact('teachers'));
+   
+   
+      
     }
 
-    public function update(Request $request, teachers $teachers)
-    {
-        $data = $request->validated();
-
-        if ($request->filled('subject')) {
-            $data['subject'] = Hash::make($request->subject);
-        } else {
-            unset($data['password']);
-        }
-
-        $teachers->update($data);
-        return redirect()->route('admin.teachers.index')->with('success', 'Guru diperbarui.');
-    }
-
-    public function destroy(teachers $teachers)
-    {
-        $teachers->delete();
-        return redirect()->back()->with('success', 'Guru dihapus.');
-    }
-} 
->>>>>>> def37a5 (push env)
+    
